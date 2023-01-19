@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 // Pages Imports
+import ArtistPage from "./pages/ArtistPage/ArtistPage";
 import EventPage from "./pages/EventPage/EventPage";
 import MainPage from "./pages/MainPage/MainPage";
 import HomePage from "./pages/HomePage/HomePage";
@@ -33,6 +34,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/event" element={<EventPage />} />
+        <Route path="/artist" element={<ArtistPage />} />
       </Routes>
       {/* <Footer /> */}
     </div>
