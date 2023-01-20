@@ -43,16 +43,7 @@ const Calendar = (props) => {
                 eventDate: el.endDate,
                 venue: el.location.name,
                 venueWebsite: el.location?.sameAs,
-                performer1: el.performer[0].name,
-                performer2: el.performer[1]?.name,
-                performer3: el.performer[2]?.name,
-                performer4: el.performer[3]?.name,
-                performer5: el.performer[4]?.name,
-                performer6: el.performer[5]?.name,
-                performer7: el.performer[6]?.name,
-                performer8: el.performer[7]?.name,
-                performer9: el.performer[8]?.name,
-                performer10: el.performer[9]?.name,
+                performers: el.performer.map(el => el.name),
                 backgroundColor: '#74AAEB'
             }
         })
