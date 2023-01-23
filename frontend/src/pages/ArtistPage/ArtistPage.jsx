@@ -7,10 +7,9 @@ const ArtistPage = (props) => {
   const state = useLocation();
   const performer = state.state;
   const [performerId, setPerformerId] = useState("");
-  const [monthlyListeners, setMonthlyListeners] = useState("")
-  const [artistBio, setArtistBio] = useState("")
-  const [topTrack, setTopTrack] = useState("")
-  const [topTracks, setTopTracks] = useState([])
+  const [artistInfo, setArtistInfo] = useState("");
+  const [topSongs, setTopSongs] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     fetchPerformerId();
@@ -23,31 +22,61 @@ const ArtistPage = (props) => {
     let text = response.data.artists?.items[0]?.data.uri;
     const idArray = text.split("");
     idArray.splice(0, 15);
-    let id = idArray.join("")
-    console.log(id)
+    let id = idArray.join("");
+    console.log(id);
     setPerformerId(idArray.join(""));
-    fetchPerformerOverview(id)
+    fetchPerformerOverview(id);
   };
 
   const fetchPerformerOverview = async (id) => {
     // let response = await axios.get(
     //   `https://spotify23.p.rapidapi.com/artist_overview/?id=${id}&rapidapi-key=e4a27c7a77msh429e0aa2416efe0p168c02jsnfd69a5e83ce3`
     // );
-    console.log(response.data)
-    setMonthlyListeners(response.data.data.artist.stats.monthlyListeners)
-    console.log(response.data.data.artist.discography.topTracks.items[0].track.name)
-    setTopTrack(response.data.data.artist.discography.topTracks.items[0].track.name)
-    setArtistBio(response.data.data.artist.profile?.biography.text);
+
+    let artistInfo = [response.data.data.artist];
+    let topSongs = [
+      artistInfo[0].discography.topTracks.items[0],
+      artistInfo[0].discography.topTracks.items[1],
+      artistInfo[0].discography.topTracks.items[2],
+    ];
+    console.log(artistInfo);
+    console.log(topSongs);
+    setTopSongs(topSongs);
+    setArtistInfo(artistInfo);
+    setIsLoaded(true);
   };
 
   return (
     <div>
-      <h1>This right here? You guessed it. It's the Artist Page!</h1>
-      <h1>Who's that artist? it's {performer}!</h1>
-      <p>here are the monthly listeners! {monthlyListeners}</p>
-      <p>and of course, the top tracks: {topTracks}</p>
-      <p>{artistBio}</p>
-      <VideoPlayer performer={performer} topTrack={topTrack} />
+      {isLoaded ? (
+        <>
+          <h1>Who's that artist? it's {performer}!</h1>
+          <img src={artistInfo[0].visuals.avatarImage.sources[0].url} alt="ArtistPhoto"></img>
+          <p>here are the monthly listeners! {artistInfo[0].stats.monthlyListeners}</p>
+          <p>and of course, the top tracks:</p>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Plays</th>
+                </tr>
+              </thead>
+              <tbody>
+                {topSongs.map((song) => {
+                  return (
+                    <tr>
+                      <td>{song.track.name}</td>
+                      <td>{song.track.playcount}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <VideoPlayer performer={performer} topTrack={topSongs[0].track.name} />
+        </>
+      ) : null}
     </div>
   );
 };
