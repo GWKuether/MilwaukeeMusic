@@ -11,6 +11,9 @@ const ArtistPage = (props) => {
   const [topSongs, setTopSongs] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  
+  
+  
   useEffect(() => {
     fetchPerformerId();
   }, []);
@@ -23,16 +26,14 @@ const ArtistPage = (props) => {
     const idArray = text.split("");
     idArray.splice(0, 15);
     let id = idArray.join("");
-    console.log(id);
     setPerformerId(idArray.join(""));
     fetchPerformerOverview(id);
   };
 
   const fetchPerformerOverview = async (id) => {
-    // let response = await axios.get(
+    let response = await axios.get(
     //   `https://spotify23.p.rapidapi.com/artist_overview/?id=${id}&rapidapi-key=e4a27c7a77msh429e0aa2416efe0p168c02jsnfd69a5e83ce3`
-    // );
-
+    );
     let artistInfo = [response.data.data.artist];
     let topSongs = [
       artistInfo[0].discography.topTracks.items[0],

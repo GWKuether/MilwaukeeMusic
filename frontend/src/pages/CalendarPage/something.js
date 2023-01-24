@@ -1651,8 +1651,8 @@ export const something = [
     {
         "@context": "http://schema.org",
         "@type": "MusicEvent",
-        "description": "Tom West at Var Gallery at 2023-01-28",
-        "endDate": "2023-01-28",
+        "description": "Tom West at Var Gallery at 2023-01-23",
+        "endDate": "1/23/2023",
         "eventStatus": "https://schema.org/EventScheduled",
         "image": "https://images.sk-static.com/images/media/profile_images/artists/5478343/huge_avatar",
         "location": {
@@ -1680,7 +1680,7 @@ export const something = [
                 "name": "Tom West"
             }
         ],
-        "startDate": "2023-01-28"
+        "startDate": "2023-01-23"
     },
     {
         "@context": "http://schema.org",
@@ -1715,7 +1715,7 @@ export const something = [
         "@context": "http://schema.org",
         "@type": "MusicEvent",
         "description": "Dirt Monkey and Jantsen at The Miramar Theatre at 2023-01-29T20:00:00-0600",
-        "endDate": "2023-01-29",
+        "endDate": "1/23/2023",
         "eventStatus": "https://schema.org/EventScheduled",
         "image": "https://images.sk-static.com/images/media/profile_images/artists/4213166/huge_avatar",
         "location": {
