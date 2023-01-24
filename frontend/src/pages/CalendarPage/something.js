@@ -1686,7 +1686,7 @@ export const something = [
         "@context": "http://schema.org",
         "@type": "MusicEvent",
         "description": "Phil Cook at Tra La La at 2023-01-29",
-        "endDate": "2023-01-29",
+        "endDate": "1/26/2023",
         "eventStatus": "https://schema.org/EventScheduled",
         "image": "https://images.sk-static.com/images/media/profile_images/artists/4876678/huge_avatar",
         "location": {
@@ -1715,7 +1715,7 @@ export const something = [
         "@context": "http://schema.org",
         "@type": "MusicEvent",
         "description": "Dirt Monkey and Jantsen at The Miramar Theatre at 2023-01-29T20:00:00-0600",
-        "endDate": "1/23/2023",
+        "endDate": "1/25/2023",
         "eventStatus": "https://schema.org/EventScheduled",
         "image": "https://images.sk-static.com/images/media/profile_images/artists/4213166/huge_avatar",
         "location": {
@@ -1753,7 +1753,7 @@ export const something = [
         "@context": "http://schema.org",
         "@type": "MusicEvent",
         "description": "Phillip-Michael Scales at Stone Arch Brewpub at 2023-01-31",
-        "endDate": "2023-01-31",
+        "endDate": "1/24/2023",
         "eventStatus": "https://schema.org/EventScheduled",
         "image": "https://images.sk-static.com/images/media/profile_images/artists/8701688/huge_avatar",
         "location": {

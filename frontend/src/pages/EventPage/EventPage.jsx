@@ -12,17 +12,21 @@ const EventPage = (props) => {
 
     console.log(eventInfo);
 
-    function handleClick(performer){
-        navigate("/artist", {state: performer});
+    function handleClick(info, name){
+        let eventInfo={
+            eventInfo: info,
+            artistName: name
+        }
+        navigate("/artist", {state: eventInfo});
   }
 
 
   return (
     <div>
       <h1>Hey welcome to the event page!</h1>
-      {eventInfo.performers.map((performer) =>{
+      {eventInfo.performers.map((el) =>{
         return(
-            <p onClick={() => handleClick(performer)}>{performer}</p>
+            <p onClick={() => handleClick(eventInfo, el)}>{el}</p>
         )
       })}
       

@@ -5,11 +5,12 @@ import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 
 const ArtistPage = (props) => {
   const state = useLocation();
-  const performer = state.state;
+  const eventInfo = state.state;
   const [performerId, setPerformerId] = useState("");
   const [artistInfo, setArtistInfo] = useState("");
   const [topSongs, setTopSongs] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
 
   
   
@@ -19,14 +20,15 @@ const ArtistPage = (props) => {
   }, []);
 
   const fetchPerformerId = async () => {
-    // let response = await axios.get(
-    //   `https://spotify23.p.rapidapi.com/search/?q=${performer}&type=artists&offset=0&limit=1&numberOfTopResults=1&rapidapi-key=e4a27c7a77msh429e0aa2416efe0p168c02jsnfd69a5e83ce3`
-    // );
+    console.log(eventInfo)
+    let response = await axios.get(
+    //   `https://spotify23.p.rapidapi.com/search/?q=${eventInfo.artistName}&type=artists&offset=0&limit=1&numberOfTopResults=1&rapidapi-key=e4a27c7a77msh429e0aa2416efe0p168c02jsnfd69a5e83ce3`
+    );
     let text = response.data.artists?.items[0]?.data.uri;
-    const idArray = text.split("");
-    idArray.splice(0, 15);
-    let id = idArray.join("");
-    setPerformerId(idArray.join(""));
+    const idArray = text?.split("");
+    idArray?.splice(0, 15);
+    let id = idArray?.join("");
+    setPerformerId(idArray?.join(""));
     fetchPerformerOverview(id);
   };
 
@@ -51,9 +53,10 @@ const ArtistPage = (props) => {
     <div>
       {isLoaded ? (
         <>
-          <h1>Who's that artist? it's {performer}!</h1>
+          <h1>Who's that artist? it's {eventInfo.artistName}!</h1>
           <img src={artistInfo[0].visuals.avatarImage.sources[0].url} alt="ArtistPhoto"></img>
           <p>here are the monthly listeners! {artistInfo[0].stats.monthlyListeners}</p>
+          <p>this is the venue that they're playing at {eventInfo.eventInfo.venue}</p>
           <p>and of course, the top tracks:</p>
           <div>
             <table>
@@ -75,7 +78,7 @@ const ArtistPage = (props) => {
               </tbody>
             </table>
           </div>
-          <VideoPlayer performer={performer} topTrack={topSongs[0].track.name} />
+          <VideoPlayer performer={eventInfo.artistName} topTrack={topSongs[0].track.name} />
         </>
       ) : null}
     </div>
