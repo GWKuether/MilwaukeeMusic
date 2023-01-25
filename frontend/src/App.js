@@ -10,6 +10,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import CalendarPage from "./pages/CalendarPage/CalendarPage";
+import SavedEventsPage from "./pages/SavedEventsPage/SavedEventsPage"
+
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -40,6 +42,7 @@ function App() {
             </PrivateRoute>
           }
         /> */}
+        <Route path="/saved-events" element={<PrivateRoute><SavedEventsPage /></PrivateRoute>} />
         <Route path="/" element={<MainPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />

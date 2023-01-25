@@ -10,7 +10,7 @@ const VideoPlayer = (props) => {
 
   const fetchVideoId = async () => {
     let response = await axios.get(
-    //   `https://www.googleapis.com/youtube/v3/search?q=${props.performer} ${props.topTrack}&key=AIzaSyADwfFOa8oCMWoWfKuESBZmEFDTEd8mB18&part=snippet&maxResults=1`
+      `https://www.googleapis.com/youtube/v3/search?q=${props.performer} ${props.topTrack}&key=AIzaSyADwfFOa8oCMWoWfKuESBZmEFDTEd8mB18&part=snippet&maxResults=1`
     );
     console.log(response.data);
     setVideoId(response.data.items[0].id.videoId);

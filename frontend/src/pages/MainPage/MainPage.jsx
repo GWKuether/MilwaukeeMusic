@@ -25,12 +25,13 @@ const MainPage = (props) => {
 
   const fetchDailyEvents = async () => {
     let response = await axios.get(
-    //   `https://concerts-artists-events-tracker.p.rapidapi.com/location?name=Milwaukee&minDate=${todayDate.toLocaleDateString()}&maxDate=${nextDayDate.toLocaleDateString()}&rapidapi-key=e4a27c7a77msh429e0aa2416efe0p168c02jsnfd69a5e83ce3`
+      // `https://concerts-artists-events-tracker.p.rapidapi.com/location?name=Milwaukee&minDate=${todayDate.toLocaleDateString()}&maxDate=${nextDayDate.toLocaleDateString()}&rapidapi-key=e4a27c7a77msh429e0aa2416efe0p168c02jsnfd69a5e83ce3`
     )
     let dataToMap = response.data.data;
     // let dataToMap = something;
     let artists = dataToMap?.map(function (el) {
       return {
+        title: el.description,
         eventDate: el.endDate,
         venue: el.location.name,
         venueWebsite: el.location?.sameAs,
