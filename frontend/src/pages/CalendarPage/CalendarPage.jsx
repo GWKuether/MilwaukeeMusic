@@ -5,12 +5,14 @@ import interactionPlugin from '@fullcalendar/interaction'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {something} from './something';
+import { rapidAPIKey } from '../APIKeys/APIKeys';
 
 
 const Calendar = (props) => {
 
     const navigate = useNavigate()
 
+    const todayDate = new Date()
     const [events, setEvents] = useState([])
 
 
@@ -29,13 +31,13 @@ const Calendar = (props) => {
 
 
     const fetchEvents = async () => {
-        // let response = await axios.get(
-        //   "https://concerts-artists-events-tracker.p.rapidapi.com/location?name=Milwaukee&minDate=2023-01-18&maxDate=2023-01-31&rapidapi-key=e4a27c7a77msh429e0aa2416efe0p168c02jsnfd69a5e83ce3"
-        // )
-        // console.log(response.data.data);
-        // let dataToMap = response.data.data;
-        let dataToMap = something
-        let calendarEvents = dataToMap.map(function(el){ 
+        let response = await axios.get(
+          `https://concerts-artists-events-tracker.p.rapidapi.com/location?name=Milwaukee&minDate=${todayDate.toLocaleDateString()}&maxDate=2023-12-31&rapidapi-key=${rapidAPIKey}`
+        )
+        console.log(response.data.data);
+        let dataToMap = response.data.data;
+        // let dataToMap = something
+        let calendarEvents = dataToMap?.map(function(el){ 
             return { 
                 title: el.description, 
                 date: el.endDate, 

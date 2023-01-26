@@ -260,3 +260,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+frontend\src\pages\APIKeys\APIKeys.js

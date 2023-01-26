@@ -50,7 +50,7 @@ function App() {
         <Route path="/artist" element={<ArtistPage />} />
         <Route path="/calendar" element={<CalendarPage />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

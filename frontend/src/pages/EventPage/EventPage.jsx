@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 
 const EventPage = (props) => {
-    
+
+
+    const [user, token] = useAuth()  
     const navigate = useNavigate()
     const state = useLocation();
     const eventInfo = state.state
@@ -16,9 +19,17 @@ const EventPage = (props) => {
       title: eventInfo.title,
       date: eventInfo.eventDate,
       venue: eventInfo.venue,
-      user_id: user.id
+      user_id_id: user.id
     }
+    addNewEvent(savedEvent)
    }
+
+   async function addNewEvent(savedEvent) {
+    await axios.post("http://127.0.0.1:8000/api/events/", savedEvent, {
+      headers: {
+        Authorization: "Bearer " + token,
+      }
+    })}
 
 
     console.log(eventInfo);
@@ -44,6 +55,7 @@ const EventPage = (props) => {
       })}
       <p>this is the venue: {eventInfo.venue}</p>
       <p>{eventInfo.venueWebsite}</p>
+      <button onClick={handleSaveClick}>Save This Event</button>
     </div>
   );
 };

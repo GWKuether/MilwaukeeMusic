@@ -1,9 +1,21 @@
 import "./Footer.css";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+
+  const navigate = useNavigate()
+
+  function handleClick(){
+    navigate('/saved-events')
+
+  }
+
+
+
+
   return (
     <footer>
-      <p>Copyright © 2022</p>{" "}
+      <button onClick={handleClick}>My Events</button>
     </footer>
   );
 };
