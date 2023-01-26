@@ -46,6 +46,7 @@ const ArtistPage = (props) => {
       artistInfo[0]?.discography?.topTracks.items[2],
     ];
     console.log(artistInfo);
+    console.log(artistInfo[0]?.visuals?.avatarImage.sources[0].url)
     console.log(topSongs);
     setTopSongs(topSongs);
     setArtistInfo(artistInfo);

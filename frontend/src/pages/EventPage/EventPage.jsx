@@ -13,6 +13,10 @@ const EventPage = (props) => {
     const state = useLocation();
     const eventInfo = state.state
     const eventDate = new Date (eventInfo.eventDate.replace(/-/g, '\/'))
+
+
+    console.log(eventInfo?.title)
+    console.log(eventInfo.title?.slice(0,-28))
     
    function handleSaveClick(){
     let savedEvent = {
@@ -25,14 +29,17 @@ const EventPage = (props) => {
    }
 
    async function addNewEvent(savedEvent) {
-    await axios.post("http://127.0.0.1:8000/api/events/", savedEvent, {
+    let results = await axios.post("http://127.0.0.1:8000/api/events/", savedEvent, {
       headers: {
         Authorization: "Bearer " + token,
       }
-    })}
+    })
+    if (results == "Duplicate"){
+      console.log("You've already added this event!")
+    }
+  }
 
 
-    console.log(eventInfo);
 
     function handleClick(info, name){
         let eventInfo={

@@ -16,10 +16,13 @@ def events_list(request):
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = EventSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        if Event.objects.filter(title=request.data["title"], date=request.data["date"], venue=request.data["venue"], user_id=request.user.id):
+            return Response("Duplicate")
+        else:
+            serializer = EventSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 
