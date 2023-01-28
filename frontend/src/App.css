@@ -13,6 +13,13 @@ html {
   font-family: "Poppins", sans-serif;
 }
 
+html, .main-background{
+  background-color: #F1FAEE;
+  height: 100%;
+  min-height: 100%;
+}
+
+
 p {
   font-size: 20px;
 }

@@ -1,0 +1,20 @@
+.date-center{
+    display: flex;
+    justify-content: center;
+    background: #DCF3D4;
+    box-shadow: 4px 2px 5px gray;
+}
+
+.artist-align{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.artist-spacer{
+    padding: .5em;
+}
+
+h2:hover{
+    cursor: pointer;
+}
