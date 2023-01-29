@@ -3,11 +3,11 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import { useNavigate } from "react-router-dom";
-import { rapidAPIKey } from "../APIKeys/APIKeys"
+import { rapidAPIKey } from "../APIKeys/APIKeys";
+import "./ArtistPage.css";
 
 const ArtistPage = (props) => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const state = useLocation();
   const eventInfo = state.state;
   const [performerId, setPerformerId] = useState("");
@@ -15,10 +15,6 @@ const ArtistPage = (props) => {
   const [topSongs, setTopSongs] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-
-  
-  
-  
   useEffect(() => {
     fetchPerformerId();
   }, []);
@@ -46,31 +42,53 @@ const ArtistPage = (props) => {
       artistInfo[0]?.discography?.topTracks.items[2],
     ];
     console.log(artistInfo);
-    console.log(artistInfo[0]?.visuals?.avatarImage.sources[0].url)
+    console.log(artistInfo[0]?.visuals?.avatarImage.sources[0].url);
     console.log(topSongs);
     setTopSongs(topSongs);
     setArtistInfo(artistInfo);
     setIsLoaded(true);
   };
 
-  function handleClick(){
-    navigate("/event", {state: eventInfo.eventInfo})
-
+  function handleClick() {
+    navigate("/event", { state: eventInfo.eventInfo });
   }
-
-
-  
 
   return (
     <div>
       {isLoaded ? (
         <>
-          <h1>Who's that artist? it's {eventInfo.artistName}!</h1>
-          <img src={artistInfo[0]?.visuals?.avatarImage.sources[0].url} alt="ArtistPhoto"></img>
-          <p>here are the monthly listeners! {artistInfo[0]?.stats.monthlyListeners}</p>
-          <p onClick={() => handleClick()}>Click here for more event information about this event!</p>
-          <p>and of course, the top tracks:</p>
           <div>
+            <h1>{eventInfo.artistName}</h1>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <div>
+              <img
+                src={artistInfo[0]?.visuals?.avatarImage.sources[0].url}
+                alt="ArtistPhoto"
+                className="artist-image-sizer"
+              ></img>
+            </div>
+            <div>
+              <VideoPlayer
+                performer={eventInfo.artistName}
+                topTrack={topSongs[0]?.track.name}
+              />
+              <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                <p onClick={() => handleClick()}>
+                  Click here for more event information about this event!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p>
+              here are the monthly listeners!{" "}
+              {artistInfo[0]?.stats.monthlyListeners}
+            </p>
+          </div>
+
+          <div>
+            <p>and of course, the top tracks:</p>
             <table>
               <thead>
                 <tr>
@@ -90,7 +108,6 @@ const ArtistPage = (props) => {
               </tbody>
             </table>
           </div>
-          <VideoPlayer performer={eventInfo.artistName} topTrack={topSongs[0]?.track.name} />
         </>
       ) : null}
     </div>

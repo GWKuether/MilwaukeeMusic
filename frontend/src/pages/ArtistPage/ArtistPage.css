@@ -1,0 +1,21 @@
+.artist-image-sizer{
+    height: 360px;
+    width: 360px;
+    border-radius: .75em;
+    box-shadow: 4px 2px 5px gray;
+}
+
+table {
+    border-width: .25em;
+    border-style: solid;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {background-color: #f2f2f2;}
+

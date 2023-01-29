@@ -58,7 +58,14 @@ const MainPage = (props) => {
       let date = new Date(artist.eventDate.replace(/-/g, "/"));
       if (todayDate.toLocaleDateString() === date.toLocaleDateString()) {
         return artist.performers.map((el) => {
-          return <h2 className="artist-spacer" onClick={() => handleArtistClick(artist, el)}>{el}</h2>;
+          return (
+            <h2
+              className="artist-spacer"
+              onClick={() => handleArtistClick(artist, el)}
+            >
+              {el}
+            </h2>
+          );
         });
       }
     });
@@ -69,7 +76,14 @@ const MainPage = (props) => {
       let date = new Date(artist.eventDate.replace(/-/g, "/"));
       if (tomorrowDate.toLocaleDateString() === date.toLocaleDateString()) {
         return artist.performers.map((el) => {
-          return <h2 className="artist-spacer" onClick={() => handleArtistClick(artist, el)}>{el}</h2>;
+          return (
+            <h2
+              className="artist-spacer"
+              onClick={() => handleArtistClick(artist, el)}
+            >
+              {el}
+            </h2>
+          );
         });
       }
     });
@@ -80,7 +94,14 @@ const MainPage = (props) => {
       let date = new Date(artist.eventDate.replace(/-/g, "/"));
       if (nextDayDate.toLocaleDateString() === date.toLocaleDateString()) {
         return artist.performers.map((el) => {
-          return <h2 className="artist-spacer" onClick={() => handleArtistClick(artist, el)}>{el}</h2>;
+          return (
+            <h2
+              className="artist-spacer"
+              onClick={() => handleArtistClick(artist, el)}
+            >
+              {el}
+            </h2>
+          );
         });
       }
     });
@@ -90,6 +111,9 @@ const MainPage = (props) => {
   return (
     <div>
       <div>
+        <div style={{display: "flex", justifyContent: "end", padding: "1em"}}>
+          <button onClick={handleClick}>Calendar</button>
+        </div>
         <div>
           <h1 className="date-center">{todayDate.toLocaleDateString()}</h1>
         </div>
@@ -102,9 +126,6 @@ const MainPage = (props) => {
       <div>
         <h1 className="date-center">{nextDayDate.toLocaleDateString()}</h1>
         <div className="artist-align">{buildResultsNextDay()}</div>
-      </div>
-      <div>
-        <button onClick={handleClick}>Calendar</button>
       </div>
     </div>
   );

@@ -20,6 +20,10 @@ const VideoPlayer = (props) => {
   return (
     <div>
       <iframe
+        style={{
+          boxShadow: "4px 2px 5px gray",
+          borderRadius: ".75em",
+        }}
         id="ytplayer"
         type="text/html"
         width="640"
