@@ -30,7 +30,7 @@ const MainPage = (props) => {
     // let dataToMap = something;
     let artists = dataToMap?.map(function (el) {
       return {
-        title: el.description,
+        eventTitle: el.description,
         eventDate: el.endDate,
         venue: el.location.name,
         venueWebsite: el.location?.sameAs,

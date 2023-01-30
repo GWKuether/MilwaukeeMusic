@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
+import "./SavedEventsPage.css"
 
 const SavedEvents = (props) => {
   const [user, token] = useAuth();
   const [events, setEvents] = useState([]);
+ 
 
   useEffect(() => {
     fetchUserEvents();
@@ -22,10 +24,11 @@ const SavedEvents = (props) => {
 
   function buildUserEvents() {
     let results = events?.map((event) => {
+      let date = new Date(event.date.replace(/-/g, "/"))
       return (
-        <div>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", borderStyle: "dashed", borderWidth: "1.5px"}}>
           <p>{event.title}</p>
-          <p>{event.date}</p>
+          <p>{date.toLocaleDateString()}</p>
           <p>{event.venue}</p>
         </div>
       );
@@ -35,10 +38,7 @@ const SavedEvents = (props) => {
 
   return (
     <div>
-    <p>
-      this is going to be a list of all of the events {user.username} wants to
-      attend
-    </p>
+    <h1 style={{paddingLeft: "1em", paddingBottom: "1em"}}>{user.username}'s Events</h1>
     {buildUserEvents()}
     </div>
   );

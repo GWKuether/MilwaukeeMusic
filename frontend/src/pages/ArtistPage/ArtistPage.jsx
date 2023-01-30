@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { rapidAPIKey } from "../APIKeys/APIKeys";
 import "./ArtistPage.css";
 
+
 const ArtistPage = (props) => {
   const navigate = useNavigate();
   const state = useLocation();
@@ -14,6 +15,10 @@ const ArtistPage = (props) => {
   const [artistInfo, setArtistInfo] = useState("");
   const [topSongs, setTopSongs] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  let date = new Date(eventInfo.eventInfo.eventDate) 
+
+  debugger
+  console.log(eventInfo)
 
   useEffect(() => {
     fetchPerformerId();
@@ -68,15 +73,17 @@ const ArtistPage = (props) => {
                 className="artist-image-sizer"
               ></img>
             </div>
-            <div>
+            <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
               <VideoPlayer
                 performer={eventInfo.artistName}
                 topTrack={topSongs[0]?.track.name}
               />
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <p onClick={() => handleClick()}>
+              <h2>{eventInfo.eventInfo.venue}</h2>
+              <h3>{date.toLocaleDateString()}</h3>
+              <div style={{ display: "flex", justifyContent: "flex-end", paddingTop: "1em" }}>
+                <h2 style={{borderWidth: "2px", borderStyle: "solid"}} onClick={() => handleClick()}>
                   Click here for more event information about this event!
-                </p>
+                </h2>
               </div>
             </div>
           </div>
