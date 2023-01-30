@@ -11,10 +11,9 @@ const EventPage = (props) => {
   const state = useLocation();
   const eventInfo = state.state;
   const eventDate = new Date(eventInfo.eventDate.replace(/-/g, "/"));
+  const [saveButton, setSaveButton] = useState("inactive")
   // const shortTitle = eventInfo.title?.slice(0, -28);
 
-  debugger
-  console.log(eventInfo)
 
   function handleSaveClick() {
     let savedEvent = {
@@ -24,6 +23,9 @@ const EventPage = (props) => {
       user_id_id: user.id,
     };
     addNewEvent(savedEvent);
+    if (saveButton === "inactive"){
+      setSaveButton("saved")
+    }
   }
 
   async function addNewEvent(savedEvent) {
@@ -52,7 +54,7 @@ const EventPage = (props) => {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "end", padding: "1em" }}>
-        <button onClick={handleSaveClick}>Save This Event</button>
+        <button className={saveButton} onClick={handleSaveClick}>Save This Event</button>
       </div>
       <div style={{ display:"flex", justifyContent:"center",  paddingLeft:".5em", paddingRight: ".5em", paddingBottom:".5em" }}>
         <h1>{eventInfo.eventTitle}</h1>
@@ -62,7 +64,7 @@ const EventPage = (props) => {
       </div>
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
         <div style={{ borderWidth: ".25em", borderStyle: "solid", padding: "1em"}}>
-          <p>Full artist Line up:</p>
+          <p>All Performers:</p>
           {eventInfo.performers?.map((el) => {
             return <h2 style={{paddingBottom: ".5em"}} onClick={() => handleClick(eventInfo, el)}>{el}</h2>;
           })}

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { rapidAPIKey } from "../APIKeys/APIKeys";
 import "./ArtistPage.css";
 
-
 const ArtistPage = (props) => {
   const navigate = useNavigate();
   const state = useLocation();
@@ -15,10 +14,7 @@ const ArtistPage = (props) => {
   const [artistInfo, setArtistInfo] = useState("");
   const [topSongs, setTopSongs] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  let date = new Date(eventInfo.eventInfo.eventDate) 
-
-  debugger
-  console.log(eventInfo)
+  let date = new Date(eventInfo.eventInfo.eventDate);
 
   useEffect(() => {
     fetchPerformerId();
@@ -62,58 +58,78 @@ const ArtistPage = (props) => {
     <div>
       {isLoaded ? (
         <>
-          <div>
+          <div style={{paddingLeft:"1em", paddingBottom:"1em"}}>
             <h1>{eventInfo.artistName}</h1>
           </div>
           <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <img
                 src={artistInfo[0]?.visuals?.avatarImage.sources[0].url}
                 alt="ArtistPhoto"
                 className="artist-image-sizer"
               ></img>
+              <div>
+                <p>
+                  Spotify Monthly Listeners:{" "}
+                  {artistInfo[0]?.stats.monthlyListeners}
+                </p>
+              </div>
+                <div>
+                  <h3>Spotify Top Tracks</h3>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Plays</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topSongs.map((song) => {
+                      return (
+                        <tr>
+                          <td>{song?.track?.name}</td>
+                          <td>{song?.track?.playcount}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
             </div>
-            <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <VideoPlayer
                 performer={eventInfo.artistName}
                 topTrack={topSongs[0]?.track.name}
               />
               <h2>{eventInfo.eventInfo.venue}</h2>
               <h3>{date.toLocaleDateString()}</h3>
-              <div style={{ display: "flex", justifyContent: "flex-end", paddingTop: "1em" }}>
-                <h2 style={{borderWidth: "2px", borderStyle: "solid"}} onClick={() => handleClick()}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  paddingTop: "1em",
+                }}
+              >
+                <h2
+                  style={{ borderWidth: "2px", borderStyle: "solid", padding: ".75em" }}
+                  onClick={() => handleClick()}
+                >
                   Click here for more event information about this event!
                 </h2>
               </div>
             </div>
-          </div>
-          <div>
-            <p>
-              here are the monthly listeners!{" "}
-              {artistInfo[0]?.stats.monthlyListeners}
-            </p>
-          </div>
-
-          <div>
-            <p>and of course, the top tracks:</p>
-            <table>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Plays</th>
-                </tr>
-              </thead>
-              <tbody>
-                {topSongs.map((song) => {
-                  return (
-                    <tr>
-                      <td>{song?.track?.name}</td>
-                      <td>{song?.track?.playcount}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
           </div>
         </>
       ) : null}

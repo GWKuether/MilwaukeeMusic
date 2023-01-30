@@ -26,7 +26,7 @@ const SavedEvents = (props) => {
     let results = events?.map((event) => {
       let date = new Date(event.date.replace(/-/g, "/"))
       return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", borderStyle: "dashed", borderWidth: "1.5px"}}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", borderStyle: "dashed", borderWidth: "1.5px", marginBottom:"1em"}}>
           <p>{event.title}</p>
           <p>{date.toLocaleDateString()}</p>
           <p>{event.venue}</p>
