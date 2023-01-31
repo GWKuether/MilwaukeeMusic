@@ -12,6 +12,7 @@ const EventPage = (props) => {
   const eventInfo = state.state;
   const eventDate = new Date(eventInfo.eventDate.replace(/-/g, "/"));
   const [saveButton, setSaveButton] = useState("inactive")
+  const [buttonText, setButtonText] = useState("Save This Event")
   // const shortTitle = eventInfo.title?.slice(0, -28);
 
 
@@ -25,6 +26,7 @@ const EventPage = (props) => {
     addNewEvent(savedEvent);
     if (saveButton === "inactive"){
       setSaveButton("saved")
+      setButtonText("Saved")
     }
   }
 
@@ -54,7 +56,7 @@ const EventPage = (props) => {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "end", padding: "1em" }}>
-        <button className={saveButton} onClick={handleSaveClick}>Save This Event</button>
+        <button className={saveButton} onClick={handleSaveClick}>{buttonText}</button>
       </div>
       <div style={{ display:"flex", justifyContent:"center",  paddingLeft:".5em", paddingRight: ".5em", paddingBottom:".5em" }}>
         <h1>{eventInfo.eventTitle}</h1>

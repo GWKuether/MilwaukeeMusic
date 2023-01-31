@@ -43,7 +43,7 @@ const ArtistPage = (props) => {
       artistInfo[0]?.discography?.topTracks.items[2],
     ];
     console.log(artistInfo);
-    console.log(artistInfo[0]?.visuals?.avatarImage.sources[0].url);
+    console.log(artistInfo[0]?.visuals?.avatarImage?.sources[0]?.url);
     console.log(topSongs);
     setTopSongs(topSongs);
     setArtistInfo(artistInfo);
@@ -69,18 +69,18 @@ const ArtistPage = (props) => {
                 alignItems: "center",
               }}
             >
-              <img
-                src={artistInfo[0]?.visuals?.avatarImage.sources[0].url}
+              <img style={{marginBottom: "1em"}}
+                src={artistInfo[0]?.visuals?.avatarImage?.sources[0]?.url}
                 alt="ArtistPhoto"
                 className="artist-image-sizer"
               ></img>
-              <div>
+              <div style={{marginBottom: "1em"}}>
                 <p>
                   Spotify Monthly Listeners:{" "}
                   {artistInfo[0]?.stats.monthlyListeners}
                 </p>
               </div>
-                <div>
+                <div style={{marginBottom: ".5em"}}>
                   <h3>Spotify Top Tracks</h3>
                 </div>
                 <table>
@@ -113,7 +113,7 @@ const ArtistPage = (props) => {
                 performer={eventInfo.artistName}
                 topTrack={topSongs[0]?.track.name}
               />
-              <h2>{eventInfo.eventInfo.venue}</h2>
+              <h2 style={{marginTop: "1em"}}>{eventInfo.eventInfo.venue}</h2>
               <h3>{date.toLocaleDateString()}</h3>
               <div
                 style={{
@@ -123,7 +123,7 @@ const ArtistPage = (props) => {
                 }}
               >
                 <h2
-                  style={{ borderWidth: "2px", borderStyle: "solid", padding: ".75em" }}
+                  style={{ borderWidth: "2px", borderStyle: "solid", padding: ".75em", marginTop: "1em", backgroundColor:"#3B5270", color: "white",  }}
                   onClick={() => handleClick()}
                 >
                   Click here for more event information about this event!

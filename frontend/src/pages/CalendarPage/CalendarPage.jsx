@@ -46,7 +46,7 @@ const Calendar = (props) => {
                 venue: el.location.name,
                 venueWebsite: el.location?.sameAs,
                 performers: el.performer.map(el => el.name),
-                backgroundColor: '#74AAEB'
+                backgroundColor: '#3B5270'
             }
         })
         console.log(calendarEvents)
