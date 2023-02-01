@@ -17,6 +17,7 @@ def events_list(request):
         return Response(serializer.data)
     elif request.method == 'POST':
         if Event.objects.filter(title=request.data["title"], date=request.data["date"], venue=request.data["venue"], user_id=request.user.id):
+            print(request.data)
             return Response("Duplicate")
         else:
             serializer = EventSerializer(data=request.data)

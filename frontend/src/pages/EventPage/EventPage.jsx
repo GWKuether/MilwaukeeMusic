@@ -16,9 +16,10 @@ const EventPage = (props) => {
   // const shortTitle = eventInfo.title?.slice(0, -28);
 
 
+
   function handleSaveClick() {
     let savedEvent = {
-      title: eventInfo.title,
+      title: eventInfo.eventTitle,
       date: eventInfo.eventDate,
       venue: eventInfo.venue,
       user_id_id: user.id,
@@ -40,9 +41,6 @@ const EventPage = (props) => {
         },
       }
     );
-    if (results == "Duplicate") {
-      console.log("You've already added this event!");
-    }
   }
 
   function handleClick(info, name) {
